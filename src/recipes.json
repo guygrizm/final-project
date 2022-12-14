@@ -1,0 +1,16 @@
+[
+  {
+    "id": 1,
+    "title": "Recipe #1",
+    "ingredients": ["tomato", "garlic", "aubergine"],
+    "difficulty": 1,
+    "instructions": "blablabla"
+  },
+  {
+    "id": 2,
+    "title": "Recipe #2",
+    "ingredients": ["...", "...", "..."],
+    "difficulty": 3,
+    "instructions": "blablabla"
+  }
+]
