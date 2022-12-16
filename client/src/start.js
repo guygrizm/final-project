@@ -1,4 +1,4 @@
 import { createRoot } from "react-dom/client";
-import Search from "./Search";
+import App from "./App";
 const root = createRoot(document.querySelector("main"));
-root.render(<Search />);
+root.render(<App />);

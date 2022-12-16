@@ -22,7 +22,18 @@ app.get("/api/search", async (req, res) => {
         headers: { "accept-encoding": "*" },
     });
     const newData = data.hits;
-    res.json({ newData });
+    res.json(newData);
+});
+
+app.get("/api/recipes/:recipe_id", async (req, res) => {
+    const urlReq = `https://api.edamam.com/api/recipes/v2/${req.params.recipe_id}?type=public&app_id=${APP_ID}&app_key=${APP_KEY}`;
+    const { data } = await axios({
+        method: "GET",
+        url: urlReq,
+        headers: { "accept-encoding": "*" },
+    });
+
+    res.json({ data });
 });
 
 app.get("*", function (req, res) {

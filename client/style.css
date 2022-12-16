@@ -1,3 +1,17 @@
 body {
     background-color: ghostwhite;
 }
+
+.find-recipes {
+    position: relative;
+    z-index: 2;
+    margin-top: -16px;
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+}
+
+.recipe-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    list-style: none;
+}
