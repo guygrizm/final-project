@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 
 export default function RecipeDetails() {
     const params = useParams();
-    const [recipe, setRecipe] = useState({});
+    const [recipe, setRecipe] = useState(null);
 
     useEffect(() => {
         async function getRecipe() {
@@ -14,17 +14,28 @@ export default function RecipeDetails() {
         getRecipe();
     }, [params.id]);
     console.log(recipe);
+    if (!recipe) {
+        return null;
+    }
 
     return (
         <div className="recipe-details">
-            <img className="recipe-picture " src={recipe.image} alt={`label`} />
-            <h1>{recipe.label}</h1>
-            <h3>Preparation Time (Minutes): {recipe.totalTime}</h3>
-            <h3> Ingredients: {recipe.ingredientLines}</h3>
-            <ul className="details-list"></ul>
-            <h3>
-                The Full Recipe: <a href={recipe.url}>{recipe.url}</a>
-            </h3>
+            <div className="recipe-organize">
+                <img
+                    className="recipe-picture "
+                    src={recipe.image}
+                    alt={`label`}
+                />
+
+                <h1>{recipe.label}</h1>
+                <h3>Preparation Time (Minutes): {recipe.totalTime}</h3>
+                <h3> Ingredients: {recipe.ingredientLines.join(", ")}</h3>
+                <ul className="details-list"></ul>
+                <h3>
+                    See the full recipe here:{" "}
+                    <a href={recipe.url}>{recipe.url}</a>
+                </h3>
+            </div>
         </div>
     );
 }
