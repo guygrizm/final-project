@@ -7,14 +7,34 @@ export default function App() {
         <BrowserRouter>
             <div className="app">
                 <header>
-                    <Link to="/">
-                        <img
-                            className="app-logo"
-                            src="/pantry-logo.png"
-                            alt="logo"
-                        />
-                    </Link>
-                    <nav className="menu"></nav>
+                    <nav className="menu">
+                        <ul>
+                            <li>
+                                <Link to="/">
+                                    <img
+                                        className="app-logo"
+                                        src="/pantry-logo.png"
+                                        alt="logo"
+                                    />
+                                </Link>
+                            </li>
+                            <li>
+                                <a href="#">Home</a>
+                            </li>
+                            <li>
+                                <a href="#">About</a>
+                            </li>
+                            <li>
+                                <Link to="/favorites">Favorites</Link>
+                            </li>
+                            <li>
+                                <a href="#">Services</a>
+                            </li>
+                            <li>
+                                <a href="#">Contact</a>
+                            </li>
+                        </ul>
+                    </nav>
                 </header>
                 <Routes>
                     <Route path="/" element={<Search />}></Route>

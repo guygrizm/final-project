@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import Favorites from "./LikeButton";
 
 function getIdFromRecipe(recipe) {
     const id = new URL(recipe._links.self.href).pathname.split("/").pop();
@@ -32,79 +33,6 @@ export default function Search() {
         setQuery(event.target.value);
     }
 
-    function Favorites({ id, recipe }) {
-        const [active, setActive] = useState(false);
-
-        useEffect(() => {
-            try {
-                let favorites = window.localStorage.getItem("favorites");
-
-                if (!favorites) {
-                    favorites = [];
-                } else {
-                    favorites = JSON.parse(favorites);
-                }
-
-                const foundRecipe = favorites.find(
-                    (item) => getIdFromRecipe(item) === id
-                );
-                console.log(foundRecipe);
-                if (foundRecipe) {
-                    setActive(true);
-                } else {
-                    setActive(false);
-                }
-            } catch (error) {
-                console.log("error", error);
-            }
-        }, []);
-
-        function handleFavorite(recipe_id) {
-            let favorites = window.localStorage.getItem("favorites");
-
-            if (!favorites) {
-                favorites = [];
-            } else {
-                favorites = JSON.parse(favorites);
-            }
-            favorites.push(recipe);
-            window.localStorage.setItem("favorites", JSON.stringify(favorites));
-
-            /* console.log(recipe_id);
-            window.localStorage.setItem(recipe_id, recipe_id); */
-            setActive(true);
-        }
-
-        function handleUnFavorite(recipe_id) {
-            let favorites = window.localStorage.getItem("favorites");
-
-            if (!favorites) {
-                favorites = [];
-            } else {
-                favorites = JSON.parse(favorites);
-            }
-            const filteredFavorites = favorites.filter((item) => {
-                if (getIdFromRecipe(item) == recipe_id) {
-                    return false;
-                } else {
-                    return true;
-                }
-            });
-            window.localStorage.setItem(
-                "favorites",
-                JSON.stringify(filteredFavorites)
-            );
-            /* console.log(recipe_id);
-            window.localStorage.removeItem(recipe_id); */
-            setActive(false);
-        }
-
-        if (!active) {
-            return <p onClick={() => handleFavorite(id)}>NoHearts</p>;
-        } else {
-            return <h1 onClick={() => handleUnFavorite(id)}>Heart</h1>;
-        }
-    }
     return (
         <div className="find-recipes">
             <h1 className="main-title">Welcome to Pantry!</h1>
