@@ -12,8 +12,8 @@ export default function FavoritesPage() {
     }, []);
 
     return (
-        <div>
-            <ul>
+        <div className="favorite-wrapper">
+            <ul className="favorite-list">
                 {favorites.map((recipe) => (
                     <li
                         className="list-item-favorites"

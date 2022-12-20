@@ -338,9 +338,37 @@ button span:after {
 }
 
 .list-item-favorites {
-    display: flex;
-    list-style: none;
-    text-align: center;
+    background-color: rgba(248, 248, 255, 0.618);
     align-items: center;
-    padding: 1rem;
+    display: flex;
+    /* justify-self: center; */
+    overflow: hidden;
+    border-radius: 4px;
+    /* box-shadow: 0 4px 7px 0 rgb(230 224 224 / 78%); */
+    height: 120px;
+    padding-right: 1rem;
+}
+
+.favorite-wrapper {
+    background: url(lukas-blazek-f-TWhXOrLiU-unsplash.jpg) no-repeat top right
+        fixed;
+
+    background-size: cover;
+    min-height: 100vh;
+    padding-top: 1.5rem;
+}
+
+.favorite-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-auto-flow: row dense;
+    grid-gap: 1.5rem;
+    /* display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-items: center; */
+    width: 1000px;
+    margin: 0 auto;
+
+    list-style: none;
 }
