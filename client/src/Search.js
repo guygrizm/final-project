@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Favorites from "./LikeButton";
 
-function getIdFromRecipe(recipe) {
+export function getIdFromRecipe(recipe) {
     const id = new URL(recipe._links.self.href).pathname.split("/").pop();
     return id;
 }
@@ -32,29 +32,39 @@ export default function Search() {
     function handleChange(event) {
         setQuery(event.target.value);
     }
+    function onSubmit(event) {
+        event.preventDefault();
+    }
 
     return (
         <div className="find-recipes">
-            <h1 className="main-title">Welcome to Pantry!</h1>
-            <h2 className="second-title">
-                Here you can search for recipes according to products you have
-                available to you
-            </h2>
-            <h2 className="third-title">
-                Please use (",") between the products you would like to enter
-            </h2>
-            <div className="search-field">
-                <h2>Find Recipes</h2>
+            <div className="search-header">
+                <h1 className="main-title">Welcome to Pantry!</h1>
 
-                <input
-                    className="search-recipe"
-                    type="text"
-                    placeholder="search recipe"
-                    onChange={handleChange}
-                />
+                <div className="search-field">
+                    <div id="cover">
+                        <form onSubmit={onSubmit}>
+                            <div className="tb">
+                                <div className="td">
+                                    <input
+                                        className="search-recipe"
+                                        type="text"
+                                        placeholder="find recipe"
+                                        onChange={handleChange}
+                                    />
+                                </div>
+                                <div className="td" id="s-cover">
+                                    <button type="submit">
+                                        <div id="s-circle"></div>
+                                        <span></span>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
-
-            {
+            <div className="recipe-wrapper">
                 <ul className="recipe-list">
                     {recipes.map((recipe) => (
                         <li className="list-item" key={getIdFromRecipe(recipe)}>
@@ -63,7 +73,10 @@ export default function Search() {
                                 src={recipe.recipe.image}
                                 alt={`label`}
                             />
-                            <Link to={`/recipes/${getIdFromRecipe(recipe)}`}>
+                            <Link
+                                className="list-item-link"
+                                to={`/recipes/${getIdFromRecipe(recipe)}`}
+                            >
                                 <div className="item-text">
                                     {recipe.recipe.label}
                                 </div>
@@ -75,7 +88,7 @@ export default function Search() {
                         </li>
                     ))}
                 </ul>
-            }
+            </div>
         </div>
     );
 }

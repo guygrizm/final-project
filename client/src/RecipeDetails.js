@@ -22,7 +22,7 @@ export default function RecipeDetails() {
         <div className="recipe-details">
             <div className="recipe-organize">
                 <img
-                    className="recipe-picture "
+                    className="recipeDetails-picture "
                     src={recipe.image}
                     alt={`label`}
                 />
